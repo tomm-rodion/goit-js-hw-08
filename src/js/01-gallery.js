@@ -28,5 +28,5 @@ function createGalleryItemsMarkup(galleryItems) {
 const lightbox = new SimpleLightbox('.gallery a', {
   captionsData: 'alt',
   captionDelay: 250,
-  overlayOpacity: 0.7,
+  overlayOpacity: 0.9,
 });

@@ -7,7 +7,7 @@ form.addEventListener('input', throttle(onFormInput, 500));
 form.addEventListener('submit', onFormSubmit);
 const LOCALSTORAGE_KEY = 'feedback-form-state';
 
-function onFormInput(e) {
+function onFormInput() {
   const formData = { email: inputEmail.value, message: textarea.value };
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formData));
 }
@@ -20,15 +20,19 @@ function onFormSubmit(e) {
 }
 
 function valueStorage() {
-  const parselocaleStorageData = JSON.parse(
-    localStorage.getItem(LOCALSTORAGE_KEY)
-  );
-  if (parselocaleStorageData) {
-    inputEmail.value = parselocaleStorageData.email;
-    textarea.value = parselocaleStorageData.message;
-  } else {
-    inputEmail.value = '';
-    textarea.value = '';
+  try {
+    const parselocaleStorageData = JSON.parse(
+      localStorage.getItem(LOCALSTORAGE_KEY)
+    );
+    if (parselocaleStorageData) {
+      inputEmail.value = parselocaleStorageData.email;
+      textarea.value = parselocaleStorageData.message;
+    } else {
+      inputEmail.value = '';
+      textarea.value = '';
+    }
+  } catch (error) {
+    console.log(error.message);
   }
 }
 
