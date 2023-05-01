@@ -2,12 +2,12 @@ import Player from '@vimeo/player';
 import * as _ from 'lodash';
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
-console.log(player);
+// console.log(player);
 
 player.on('timeupdate', _.throttle(saveData, 1000));
 
 function saveData(data) {
-  console.log(data);
+  // console.log(data);
   localStorage.setItem('videoplayer-current-time', data.seconds);
 }
 
